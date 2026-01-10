@@ -53,3 +53,6 @@ CodeCoverage/
 TestResult.xml
 nunit-*.xml
 /.vs/all
+.vs/ProjectEvaluation/all.metadata.v9.bin
+.vs/ProjectEvaluation/all.projects.v9.bin
+.vs/ProjectEvaluation/all.strings.v9.bin
