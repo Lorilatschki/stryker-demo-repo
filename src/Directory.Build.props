@@ -1,0 +1,38 @@
+<Project>
+
+  <PropertyGroup>
+    <NeutralLanguage>en</NeutralLanguage>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AnalysisLevel>10.0-recommended</AnalysisLevel>
+    <!-- CS0618: 'member' is obsolete: 'text'
+         (https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs0618)
+         Rationale: The whole idea of obsoletes as a way for smooth API transition is pointless when we treat them as errors. -->
+    <!-- CA1859: Use concrete types when possible for improved performance
+         (https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1859)
+         Rationale: This rule originally is only meant as suggestion and not as error. -->
+    <WarningsNotAsErrors>CS0618;CA1859</WarningsNotAsErrors>
+    <NoWarn>IDE0004;IDE0007;IDE0008;IDE0009;IDE0010;IDE0021;IDE0028;IDE0031;IDE0032;IDE0038;IDE0039;IDE0042;IDE0045;IDE0046;IDE0058;IDE0063;IDE0064;IDE0066;IDE0072;IDE0073;IDE0078;IDE0210;IDE0220;IDE0230;IDE0260;IDE0290;IDE0302;IDE0320;IDE0330;IDE2006</NoWarn>
+    <RootNamespace>StrykerDemo.$(MSBuildProjectName)</RootNamespace>
+    <AssemblyName>StrykerDemo.$(MSBuildProjectName)</AssemblyName>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <OutputPath>..\..\bin</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Nerdbank.GitVersioning">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

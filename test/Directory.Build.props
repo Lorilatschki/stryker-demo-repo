@@ -1,0 +1,64 @@
+<Project>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AnalysisLevel>10.0-recommended</AnalysisLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <!-- CS0618: 'member' is obsolete: 'text'
+         (https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs0618)
+         Rationale: The whole idea of obsoletes as a way for smooth API transition is pointless when we treat them as errors. -->
+    <!-- CA1859: Use concrete types when possible for improved performance
+         (https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1859)
+         Rationale: This rule originally is only meant as suggestion and not as error. -->
+    <!-- TEST ONLY RULE RELAXATION -->
+    <!-- CA1825: Avoid zero-length array allocations
+         (https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1825)
+         Rationale: Not enforcing this rule can improve readability for tests. And for tests readability is more important than performance. -->
+    <!-- CA2201: Do not raise reserved exception types
+         (https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2201)
+          Rationale: For tests we often want to inject also reserved exceptions to simulate a specific behavior. -->
+    <WarningsNotAsErrors>CS0618;CA1825;CA1859;CA2201</WarningsNotAsErrors>
+    <!-- Some IDE codestyle rules need to be switched off that way -->
+    <NoWarn>CA1707;CA1716;CS1591;IDE0004;IDE0007;IDE0008;IDE0009;IDE0010;IDE0021;IDE0028;IDE0031;IDE0032;IDE0038;IDE0039;IDE0042;IDE0045;IDE0046;IDE0058;IDE0063;IDE0064;IDE0066;IDE0072;IDE0073;IDE0078;IDE0210;IDE0220;IDE0230;IDE0260;IDE0290;IDE0302;IDE0320;IDE0330;IDE2006</NoWarn>
+    <RootNamespace>StrykerDemo.$(MSBuildProjectName)</RootNamespace>
+    <AssemblyName>StrykerDemo.$(MSBuildProjectName)</AssemblyName>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <Optimize>false</Optimize>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <!-- Exclude test projects from analysis -->
+    <SonarQubeExclude>true</SonarQubeExclude>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(ThisIsATestProject)' == 'true'">
+      <PackageReference Include="AwesomeAssertions" />
+      <PackageReference Include="AwesomeAssertions.Analyzers" />
+      <PackageReference Include="xunit.v3.mtp-v2" />
+      <PackageReference Include="Xunit.Combinatorial" />
+      <PackageReference Include="Moq" />
+      <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" />
+      <PackageReference Include="XUnit.OpenCategories.V3" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(ThisIsATestProject)' == 'true'">
+      <Using Include="Xunit" />
+      <Using Include="Moq" />
+      <Using Include="AwesomeAssertions" />
+      <Using Include="AwesomeAssertions.Execution" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute">
+      <Justification>Coverage for test assembly is not necessary!</Justification>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+</Project>

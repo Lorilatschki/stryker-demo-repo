@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ThisIsATestProject>true</ThisIsATestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Stack\Stack.csproj" />
+  </ItemGroup>
+
+</Project>
