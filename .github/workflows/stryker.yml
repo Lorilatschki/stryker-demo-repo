@@ -23,14 +23,11 @@ jobs:
           dotnet tool install -g dotnet-stryker --version 5.0.0
           echo "$HOME/.dotnet/tools" >> "$GITHUB_PATH"
 
-      - name: Restore
-        run: dotnet restore src/Queue.csproj
-
       - name: Run Stryker
         run: |
           dotnet-stryker \
             --output .stryker \
-            --project src/Queue.csproj \
+            --project src/Queue/Queue.csproj \
             --test-project test/Queue.Test/Queue.Test.csproj \
             --test-project test/Stack.Test/Stack.Test.csproj \
             --test-runner mtp \
